@@ -2,36 +2,20 @@
 
 Accessing Klone through the command line allows you to interact directly with the cluster — submitting jobs, managing files, and running software. When you log in using SSH, you're opening a secure terminal session on one of the login nodes. From here, you can explore the filesystem, prepare scripts, and submit workloads to compute nodes.
 
-## Two-Factor Authentication
+## Logging in to Klone
 
-UW policy requires two-factor authentication (2FA) for all UW services, including Tillicum.
-
-Before you begin, please ensure you have 2FA configured:
-
-[<ins>**UW 2FA setup page**</ins>](https://identity.uw.edu/2fa/)
-
-You need 2FA to log onto any UW-IT Research Computing cluster.
-
-## Logging in with SSH
-
-Once your account and 2FA are set up, you can use ssh to log into Klone. SSH (Secure Shell) is the standard way to connect to remote computing systems like HPC clusters.
-
-**Mac and Linux Users:** Open the Terminal application (usually found in Applications → Utilities on macOS).
-
-**Windows Users:**
-You can use:
-* **PowerShell** or **Command Prompt** (built-in)
-* **Windows Subsystem for Linux** (WSL) if installed
-* Or external tools such as [<ins>**PuTTY**</ins>](https://www.putty.org/) or [<ins>**Git Bash - use "The Bash Shell" with Git installed on Windows from this link for a video with install instructions.**</ins>](https://carpentries.github.io/workshop-template/install_instructions/#shell)
-
-Once you have a shell open, connect to Klone by typing:
+Once you have a terminal (shell) open on your local machine, log in to Klone by running the following command. Replace `UWNetID` with your UW NetID.
 
 ```bash
 ssh UWNetID@klone.hyak.uw.edu
 ```
-Replace UW NetID with your UW NetID. You'll be prompted for your UW password and then your Duo 2FA method:
+
+You'll be prompted for your UW NetID password (*Note: your Hyak password is the same password for all your UW Services*), followed by your Duo two-factor authentication method:
 
 ```bash
+Password: 
+Duo two-factor login for UWNetID
+
 Enter a passcode or select one of the following options:
 
  1. Duo Push to XXX-XXX-1234
@@ -42,6 +26,7 @@ Success. Logging you in...
 ```
 
 If successful, you'll see a welcome banner like this:
+
 ```bash
      _    _                    _                 _
     | | _| | ___  _ __   ___  | |__  _   _  __ _| | __
@@ -55,30 +40,112 @@ transferring data to and from KLONE. Please work by requesting an
 interactive session on (or submitting batch jobs to) compute nodes.
 ```
 
-> ⚠️ **WARNING:** Too many incorrect login attempts will result in an IP ban lasting up to an hour.
+> ⚠️ **WARNING:** Too many incorrect login attempts may result in a temporary IP ban lasting up to an hour.
 
-## What's a Shell?
+---
 
-The shell is your command-line interface to Klone — the environment where you type commands.
+> **💡 Common Login Issues**
+>
+> If you're having trouble logging in to Hyak, the issues below account for most problems we see.
+> 
+> **1. Lost or Expired Access**
+> 
+> If your login attempt fails even though your password and 2FA are correct, your Hyak access may have expired or been removed.
+> 
+> * Contact **UWIT Research Computing** or your **Hyak account administrator** for your research group to confirm your access.
+> * Students using shared or instructional allocations (such as STF) may need to [**reapply for access**](https://depts.washington.edu/uwrcc/hyak_access/).
+>   * In many cases, STF access does not automatically renew between quarters.
+>
+> **2. Incorrect Username or Password**
+> 
+> Be sure that:
+> 
+> * You are using your **UW NetID** (not an email address)
+> * Your password is typed correctly (passwords are not shown as you type)
+> 
+> ***Too many incorrect login attempts may result in a temporary IP ban lasting up to an hour.***
+>
+> If you believe you may have triggered a temporary ban, wait and try again later.
+> 
+> **3. Network Issues (On Campus)**
+>
+> If you are connecting from campus, make sure you are using the [**`eduroam`**](https://uwconnect.uw.edu/it?id=kb_article_view&sysparm_article=KB0034255#howtouse) wireless network.
+>
+> * The **“University of Washington”** network is known to be less stable for SSH connections
+> * Switching to **eduroam** often resolves intermittent login failures
+>
+> **4. Internet Connectivity Problems**
+>
+> Unstable internet connections—both on campus and off campus—can interfere with SSH logins.
+>
+> If login fails unexpectedly:
+> * Check your internet connection
+> * Wait a few minutes and try again
+> * Try reconnecting from a different network if possible
+> 
+> **Still Having Trouble?**
+> 
+> If your login issues persist after checking the items above, please contact UW support:
+> 
+> **Email:** help@uw.edu  
+> **Subject line:** "Hyak login issue"
+> 
+> Including “Hyak” in the subject line helps route your request to the appropriate support team.
 
-When you log in, you're connected to a login node, which serves as the front door to the cluster. This is where you prepare your work, but not where you run compute-intensive jobs. Compute- or memory-intensive tasks are not permitted on login nodes, as these can disrupt other users. The login nodes are shared by all users.
+---
 
-Your prompt will look something like:
+## What Is a Shell?
+
+The shell is a program that allows you to interact with a computer by typing commands. On Hyak, the shell is your primary way of navigating the filesystem, launching programs, and preparing work to run on compute nodes.
+
+When you use `ssh` to log in to Klone or Tillicum, you are connected to a shell called Bash (the <ins>**B**</ins>ourne <ins>**A**</ins>gain <ins>**SH**</ins>ell). If you successfully logged in and see text waiting for input, you are looking at a shell.
+
+***Think of the shell as your view into the cluster.***
+
+### The Command Prompt
+
+When you log in, you'll see a prompt that looks something like this:
+
 ```bash
 [UWNetID@klone-login01 ~]$
 ```
 
 Let's break this down:
 
-* **UWNetID** — your username
-* **klone-login01** — the login node you're connected to
-* **~** — the tilde symbol is a short hand for your home directory; this section of your command prompt will cahnge as you traverse the filesystem in the next section. 
+* **UWNetID** — your username on Hyak
+* **klone-login01** (or similar) — the login node you're connected to. Login nodes are the "front door" of the cluster. All users start here.
+* **~** — the tilde symbol is a short hand for your home directory; this section of your command prompt will change as you traverse the filesystem in the next section.
+* **$** — indicates the shell is ready for a command.
+
+In Linux, the term **directory** is used instead of folder. While graphical interfaces often use "folder," "directory" is the correct term in the command-line environment.
+
+We will discuss the filesystem, directories, and storage locations in more detail in the next section.
+
+---
+
+> **📝 A Note on Login Nodes**
+>
+> Login nodes are shared by all users and are intended for:
+> * Editing files
+> * Navigating directories
+> * Transferring data
+> * Submitting jobs to the scheduler
+>
+> ***Compute- or memory-intensive work should not be run on login nodes.*** **Arbiter** is the tool which automates login node monitoring and enforces usage limits to ensure stability and ensure fair access.
+>
+> **Arbiter monitors resource usage on login nodes and will:**
+> * Slow or halt processes that exceed permitted thresholds.
+> * Terminate processes outright if necessary.
+> 
+> You will learn how to request compute resources later in this tutorial.
+
+---
 
 ## Practice
 
 Once logged in, here are a few simple exercises to get familiar with the shell:
 
-### 1. Check where you are
+### 1. Check your current location
 
 ```bash
 pwd
@@ -86,18 +153,18 @@ pwd
 
 This prints your current directory (should be your home directory).
 
-### 2. See what's in your home directory
+### 2. List files in your home directory
 
 ```bash
 ls -l
 ```
 
-This lists files and directories, along with details like size, and permissions.
+This lists files and directories, along with details such as size, and permissions.
 
-### 3. Check what node you're on
+### 3. Check which node you're on
 
 ```bash
 hostname
 ```
 
-This confirms which login node you're connected to (e.g., `klone-login01`).
+This prints the name of the login node you're connected to (e.g., `klone-login01`).

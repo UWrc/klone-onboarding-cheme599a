@@ -68,7 +68,7 @@ Globus is available on Hyak Klone, Tillicum, Kopah, and UW OneDrive, allowing fo
 
 The directory `/mmfs1` will be the default path when you connect.
 
-1. Navigate to your working directory by selecting `/mmfs1/` by double clicking it, then selecting `gscratch/` and later `scrubbed/`, then your working directory, which should be your UWNetID, and then the git hub repository directory `klone-onboarding-cheme599a/`. 
+5. Navigate to your working directory by selecting `/mmfs1/` by double clicking it, then selecting `gscratch/` and later `scrubbed/`, then your working directory, which should be your UWNetID, and then the git hub repository directory `klone-onboarding-cheme599a/`. 
 
 ![Screenshot showing the git hub repository directory and the Klone path on Globus.](/img/globus_path.png 'path')
 *Screenshot showing the git hub repository directory and the Klone path on Globus.*
@@ -85,7 +85,7 @@ To transfer data between your computer and Klone, you'll need to install Globus 
 ![Screenshot showing the result of setting up Globus Connect Personal properly.](/img/gcp_endpoint.png 'personal endpoint')
 *Screenshot showing the result of setting up Globus Connect Personal properly.*
 
-1. Bookmark the collection representing your Globus Connect Personal for quick access later.
+4. Bookmark the collection representing your Globus Connect Personal for quick access later.
 
 ### Practice Transfers
 
@@ -120,9 +120,6 @@ Search for **UW OneDrive** and bookmark it for easy access.
 
 ![Screenshot showing the UW OneDrive endpoint in Globus.](/img/onedrive_globus.png 'onedrive')
 *Screenshot showing the UW OneDrive endpoint in Globus.*
-
-![Screenshot showing 2-pane view set up with OneDrive and Klone collections, the button to start the transfer, and the checkbox of file selected to transfer.](/img/onedrive_transfer.png 'onedrive')
-*Screenshot showing 2-pane view set up with OneDrive and Klone collections, the button to start the transfer, and the checkbox of file selected to transfer.*
 
 ### Learn More
 

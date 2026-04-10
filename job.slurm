@@ -1,11 +1,9 @@
 #!/bin/bash
 #SBATCH --job-name=myjob
-#SBATCH --qos=normal
-#SBATCH --gpus=2
-#SBATCH --cpus-per-task=16
-#SBATCH --mem=400G
-#SBATCH --time=04:00:00
+#SBATCH --partition=ckpt-all
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=10G
+#SBATCH --time=01:00:00
 #SBATCH --output=slurm-%j.out
 
 hostname
-nvidia-smi

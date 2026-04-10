@@ -34,11 +34,11 @@ Each topic in this tutorial is contained in its own Markdown file for easy navig
 
 ## Additional Resources
 
-* [**<ins>Hyak STF Account for Students</ins>**](https://depts.washington.edu/uwrcc/hyak/)
-* [**<ins>Hyak Documentation</ins>**](https://hyak.uw.edu/docs)
-* [**<ins>Our Globus Docs</ins>**](https://hyak.uw.edu/docs/storage/globus)
-* [**<ins>Globus' Documentation</ins>**](https://docs.globus.org/?_gl=1*da6xxk*_ga*ODMxMTMwMTg2LjE3NTg3MzQ0OTk.*_ga_7ZB89HGG0P*czE3NTk2MTAwNTAkbzckZzAkdDE3NTk2MTAwNTAkajYwJGwwJGgw)
-* [**<ins>Hyak Klone Open OnDemand Portal for GUI</ins>**](https://hyak.uw.edu/docs/ood/start)
+- [**<ins>Hyak STF Account for Students</ins>**](https://depts.washington.edu/uwrcc/hyak/)
+- [**<ins>Hyak Documentation</ins>**](https://hyak.uw.edu/docs)
+- [**<ins>Our Globus Docs</ins>**](https://hyak.uw.edu/docs/storage/globus)
+- [**<ins>Globus' Documentation</ins>**](https://docs.globus.org/?_gl=1*da6xxk*_ga*ODMxMTMwMTg2LjE3NTg3MzQ0OTk.*_ga_7ZB89HGG0P*czE3NTk2MTAwNTAkbzckZzAkdDE3NTk2MTAwNTAkajYwJGwwJGgw)
+- [**<ins>Hyak Klone Open OnDemand Portal for GUI</ins>**](https://hyak.uw.edu/docs/ood/start)
 
 ## Stay Tuned
 

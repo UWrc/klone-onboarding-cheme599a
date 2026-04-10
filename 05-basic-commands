@@ -1,20 +1,24 @@
+<!-- omit in toc -->
 # Basic Linux Commands
 
 In this section, we will review more commands to get you comfortable doing basic things on Hyak. Some of the data and exercises for this tutorial were sampled from [<ins>**The Unix Shell by Software Carpentry**</ins>](https://swcarpentry.github.io/shell-novice/index.html), but have been tailored to fit most Hyak users. Sampled materials are under the Copyright of Software Carpentry and are made available under the Creative Commons Attribution license (CC BY 4.0).
 
 We'll use some commands you already know like `pwd`, `cd`, and `ls`, but we'll cover these commands and concepts for the first time: 
-- [Basic Linux Commands](#basic-linux-commands)
-  - [Setup: Preparing Your Tutorial Workspace](#setup-preparing-your-tutorial-workspace)
-  - [`wget` or "web get" to download data from a webpage](#wget-or-web-get-to-download-data-from-a-webpage)
-  - [Use relative paths with `../`](#use-relative-paths-with-)
-  - [`mkdir` or "make directory" to make an empty directory](#mkdir-or-make-directory-to-make-an-empty-directory)
-  - [Edit files with `nano`](#edit-files-with-nano)
-  - [`cat` or "concatenate" a file to print its contents](#cat-or-concatenate-a-file-to-print-its-contents)
-  - [View with `head`, `tail`, `more`, `less`](#view-with-head-tail-more-less)
-  - [`cp` or "copy" files](#cp-or-copy-files)
-  - [`mv` or "move" file to a new name (rename)](#mv-or-move-file-to-a-new-name-rename)
-  - [`rm` or "remove" a file](#rm-or-remove-a-file)
+- [Use relative paths with `../`](#use-relative-paths-with-)
+- [`mkdir` or "make directory" to make an empty directory](#mkdir-or-make-directory-to-make-an-empty-directory)
+- [Edit files with `nano`](#edit-files-with-nano)
+- [`cat` or "concatenate" a file to print its contents](#cat-or-concatenate-a-file-to-print-its-contents)
+- [`cp` or "copy" files](#cp-or-copy-files)
+- [`mv` or "move" file to a new name (rename)](#mv-or-move-file-to-a-new-name-rename)
+- [`rm` or "remove" a file](#rm-or-remove-a-file)
+- [Wildcard `*`](#wildcard-)
+- ["Redirect" output to a file with `>`](#redirect-output-to-a-file-with-)
+- ["Append" output to a file with `>>`](#append-output-to-a-file-with-)
+- [Search for a pattern with `grep`](#search-for-a-pattern-with-grep)
+- [Use a `|` or "pipe" character to string commands together](#use-a--or-pipe-character-to-string-commands-together)
+- [View your command history `history`](#view-your-command-history-history)
 
+<!-- omit in toc -->
 ## Setup: Preparing Your Tutorial Workspace
 
 You should have already completed these steps earlier in the tutorial, but before we continue, let’s make sure everyone is starting from the same place.
@@ -22,60 +26,15 @@ You should have already completed these steps earlier in the tutorial, but befor
 For the remainder of this tutorial, **your working directory will be**:
 
 ```bash
-/gscratch/scrubbed/$USER/linux-fundamentals
+/gscratch/scrubbed/$USER/klone-onboarding-cheme599a
 ```
 Navigate to your working directory before moving on: 
+
 ```bash
-cd /gscratch/scrubbed/$USER/linux-fundamentals
+cd /gscratch/scrubbed/$USER/klone-onboarding-cheme599a
 ```
 
 If this you don't have you working directory yet, [return to the Filesystem Scrubbed section](./02-filesystem.md#scrubbed-storage--our-tutorial-workspace) to set it up. 
-
-## `wget` or "web get" to download data from a webpage
-
-Download example data from the Software Carpentry github repository for the next exercises.
-
-```bash
-wget https://swcarpentry.github.io/shell-novice/data/shell-lesson-data.zip
-```
-
-List your working directory to show the zipped version of the lesson directory `shell-lesson-data.zip`.
-
-```bash
-ls
-```
-
-Unzip the lesson directory with the `unzip` command.
-
-```bash
-unzip shell-lesson-data.zip
-```
-
-`ls` should show a unzipped version of the shell-lesson-data directory as well as the zipped version.
-
-Change directory to go into shell-lesson-data/exercise-data/writing/
-
-```bash
-cd shell-lesson-data/exercise-data/writing/
-```
-
-Print your working directory to understand where you are.
-
-```bash
-pwd
-```
-
-List the writing directory
-
-```bash
-ls 
-```
-
-The expected result is:
-
-```bash
-haiku.txt  LittleWomen.txt
-```
 
 ## Use relative paths with `../`
 
@@ -85,11 +44,6 @@ Print your working directory to understand where you are.
 
 ```bash
 cd ../
-```
-
-Print working directory to see the result of `cd ../`
-
-```bash
 pwd
 ```
 
@@ -97,34 +51,28 @@ Use `cd` and `../` twice to go backward 2 directories
 
 ```bash
 cd ../../
-```
-
-Print working directory again to see the result 
-
-```bash
 pwd
 ```
 
 You can list the contents of the directory "above" where we are now without changing directory.
 
 ```bash
-
 ls ../
-
 ```
 
 ## `mkdir` or "make directory" to make an empty directory 
 
-Let's go back to `shell-lesson-data/exercise-data/writing` and practice making a directory.
+Let's go back to your working directory and practice making a directory.
 
 ```bash
-cd shell-lesson-data/exercise-data/writing
+cd /gscratch/scrubbed/$USER/klone-onboarding-cheme599a
 ```
 
-Make a directory called "thesis"
+Make a directory called "writing" and navigate into it
 
 ```bash
-mkdir thesis
+mkdir writing
+cd writing
 ```
 
 Note that `mkdir` is not limited to creating single directories one at a time. The `-p` option for "path" allows `mkdir` to create a directory with nested subdirectories in a single operation:
@@ -132,19 +80,19 @@ Note that `mkdir` is not limited to creating single directories one at a time. T
 ```bash
 # make a directory called project with subdirectories data and results
 # make these one directory "above" where we are now 
-mkdir -p ../project/data ../project/results
+mkdir -p ./project/data ./project/results
 ```
 
-`-F` option with ls puts a `/` after directories to differentiate them from other objects.
+`-F` option with `ls` puts a `/` after directories to differentiate them from other objects.
 
 ```bash
 ls -F
 ```
 
-The `-R` option to the ls command will list all nested subdirectories within a directory. Let’s use `ls -FR` to recursively list the new directory hierarchy we just created in the project directory:
+The `-R` option to the `ls` command will list all nested subdirectories within a directory. Let’s use `ls -FR` to recursively list the new directory hierarchy we just created in the project directory:
 
 ```bash
-ls -FR ../project
+ls -FR ./project
 ```
 
 > ⚠️ **WARNING:** Avoid complicated names for files and directories
@@ -157,19 +105,19 @@ ls -FR ../project
 
 To edit files on Klone we need to go back to basic text editors. You will not have access to a word processor, and formatting and syntax doesn't always translate from Microsoft Word or similar software to executable commands on Klone. Next, we will create a file called `draft.txt` and open it in the text editor `nano`.
 
-First change directory to thesis:
+First change directory to writing:
 
 ```bash
-cd /gscratch/scrubbed/$USER/linux-fundamentals/shell-lesson-data/exercise-data/writing/thesis
+cd /gscratch/scrubbed/$USER/klone-onboarding-cheme599a/writing
 ```
 
-The create and open a file called draft.txt with the command:
+Then create and open a file called draft.txt with the command:
 
 ```bash
 nano draft.txt
 ```
 
-> **NOTE:** There are other text editors you could choose from. `vim` is a popular choice. `nano` is beginner friendly, so that is what we will use here.
+> 📝 **NOTE:** There are other text editors you could choose from. `vim` is a popular choice. `nano` is beginner friendly, so that is what we will use here.
 
 Let's type a few lines of text.
 
@@ -188,97 +136,11 @@ Let's view our work.
 cat draft.txt
 ```
 
-> **Important concept:** Paths and Access
+> 📝 **NOTE:** **Paths** and **Access**
 >
-> On the command line, your location determines what you have access to. To demonstrate this important concept, consider the following example:
-> 
-> There is a dataset of sequences from a mythical creature called a Basilisk (from the Harry Potter Universe). If you wanted to execute anything on `basilisk.dat` you would not be able to unless you are inside of the directory where it is stored or using its **absolute path**. Let's go find it and print its contents to the shell with `cat`.
-> 
-> ```bash
-> cd /gscratch/scrubbed/$USER/linux-fundamentals/shell-lesson-data/exercise-data/creatures
-> ```
-> 
-> List the directory.
-> 
-> ```bash
-> ls
-> ```
-> 
-> `cat` the Basilisk data
-> 
-> ```bash
-> cat basilisk.dat 
-> ```
-> 
-> To illustrate the concept of paths and access. Let's go back to our previous directory (likely `/gscratch/scrubbed/$USER/linux-fundamentals/shell-lesson-data/exercise-data/writing/thesis` if you have been following along) and try to `cat` the Basilisk data. 
-> 
-> ```bash
-> cd -
-> 
-> cat basilisk.dat
-> ```
-> 
-> The expected output:
-> 
-> ```bash
-> cat: basilisk.dat: No such file or directory
-> ```
-> 
-> We get an error because we can't access `basilisk.dat` from our location without more information. However, we can provide the relative or absolute path to access `basilisk.dat`:
-> 
-> ```bash
-> cat ../../creatures/basilisk.dat
-> ```
->or with the absolute path:
-> ```bash
-> cat /gscratch/scrubbed/$USER/linux-fundamentals/shell-lesson-data/exercise-data/creatures/basilisk.dat
-> ```
-> 
-> In this example, we have provided more information about the location of `basilisk.dat` ***relative*** to our location (i.e., using `../` to indicate the position relative to our current directory location) and are able to access it and execute the `cat` command upon it. 
-> 
-> We can also use ***absolute*** paths to access a file from **ANY** location on the Klone filesystem. This is a error-proof method of making sure you can execute commands on files no matter where on the filesystem the command is issued. Let's use an ***absolute*** path to see a file from elsewhere on the filesystem. There is a dataset called `animals.csv` under `/mmfs1/sw/hyak101/basics/data/`. Let's view it with `cat` from our current directory.
-> 
-> ```bash
-> # first print your working directory to see your location
-> pwd
-> ```
-> 
-> Now use the absolute path to `animals.csv` to `cat` it
-> 
-> ```bash
-> cat /mmfs1/sw/hyak101/basics/data/animals.csv
-> ```
-> 
-> To summarize, to access a file or directory (i.e., item) you must be: 
-> * inside of the directory where the item is
-> * provide a relative path to the item from your current directory
-> * provide an absolute path to the item
-> 
-
-## View with `head`, `tail`, `more`, `less`
-
-These four commands are other ways to view file contents, great for viewing smaller chunks of longer files.
-
-```bash
-# change directory to creatures data
-cd /gscratch/scrubbed/$USER/linux-fundamentals/shell-lesson-data/exercise-data/creatures/
-
-head basilisk.dat # displays the first part of a file
-
-tail basilisk.dat # displays the last part of a file
-
-more basilisk.dat # displays file contents one page at a time
-# exit the more command with Q
-
-less basilisk.dat # displays file contents one page at a time
-# exit the less command with Q
-```
-
-By default, `head` and `tail` commands display the first and last 10 lines of a file. To view a specific number of lines use `-n` followed by the desired number of lines.
-
-```bash
-head -n 20 basilisk.dat
-```
+> To access a file or directory (i.e., item) you must: 
+> * be inside of the directory where the item is and provide a relative path to the item from your current directory
+> * or provide an absolute path to the item
 
 ## `cp` or "copy" files
 
@@ -315,11 +177,83 @@ mv animals.csv dataset.csv
 rm dataset.csv
 ```
 
-Remove a directory with recursive rm.
+Remove a directory with recursive `rm`.
 
 ```bash
-cd shell-lesson-data/exercise-data/writing/
+cd klone-onboarding-cheme599a/writing/
 ls
 # Use extreme caution with this command
-rm -r thesis
+rm -r project
 ```
+
+## Wildcard `*`
+
+Wildcards are special characters used as a shorthand. `*` is the mostly used wildcard.
+
+```bash
+cd /gscratch/scrubbed/$USER/klone-onboarding-cheme599a
+
+# list all files
+ls
+
+# lists all files ending with .md
+ls *.md
+
+# further examples
+ls /sw/hyak101/basics/*.slurm
+ls /sw/hyak101/basics/locator*
+ls /sw/hyak101/basics/locator_NN*
+```
+
+## "Redirect" output to a file with `>`
+
+```bash
+# list all files in current directory and redirect result to a file
+ls -a > ls.out
+cat ls.out
+```
+
+> ⚠️ **WARNING:** If the file already exists, it will be overwritten.
+
+## "Append" output to a file with `>>`
+
+```bash
+# list all files in current directory in long format and append result to ls.out
+ls -l >> ls.out
+cat ls.out
+```
+
+Using `>>` can avoid overwriting a file.
+
+## Search for a pattern with `grep`
+
+`grep` finds and prints lines in files that match a pattern
+
+```bash
+cat ls.out
+grep slurm ls.out
+```
+
+Only the lines containing "slurm" will print out.
+
+## Use a `|` or "pipe" character to string commands together
+
+Alternatively, files ending with "slurm" can be printed by using one line of code:
+
+```bash
+ls -la | grep "slurm"
+```
+
+## View your command history `history`
+
+```bash
+history
+```
+
+Use `history`, `|`, and `grep` together to find all times the `cat` command was used.
+
+```bash
+history |grep cat
+```
+
+> 💡 **TIPS:** Add `--help` flag or use `man command` to display the help message / system documentation of a command.

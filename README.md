@@ -12,6 +12,7 @@ By completing this tutorial, you’ll learn how to:
 - Log in and access Hyak Klone resources
 - Navigate the filesystem and manage data
 - Transfer data with scp and Globus
+- Use essential Linux commands for inspecting and manipulating files
 - Submit and monitor jobs with Slurm
 - Load and manage software modules
 - Use Conda computing environments

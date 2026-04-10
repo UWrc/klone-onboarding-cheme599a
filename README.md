@@ -24,12 +24,12 @@ Each topic in this tutorial is contained in its own Markdown file for easy navig
 | --- | --- |
 | [**<ins>00-prereqs.md</ins>**](./00-prereqs.md) | Account and access prerequisites |
 | [**<ins>01-logging-in.md</ins>**](./01-logging-in.md) | Logging in to Hyak Klone via SSH |
-| [**<ins>02-filesystem.md</ins>**](./02-filesystem.md) | Understanding Hyak Klone filesystem, storage, and best practices |
+| [**<ins>02-filesystem.md</ins>**](./02-filesystem.md) | Understanding and navigating Hyak Klone filesystem and storage |
 | [**<ins>03-user-tools.md</ins>**](./03-user-tools.md) | Introduction to Hyak user tools |
 | [**<ins>04-file-transfer.md</ins>**](./04-file-transfer.md) | Transferring files with `scp` and Globus |
-| [**<ins>05-slurm.md</ins>**](./05-slurm.md) | Submitting, monitoring, and managing jobs |
-| [**<ins>06-modules.md</ins>**](./06-modules.md) | Using LMOD to load software modules |
-| [**<ins>07-computing-env.md</ins>**](./07-computing-env.md) | Setting up Conda environments |
+| [**<ins>05-basic-commands.md</ins>**](./04-file-transfer.md) | Essential Linux commands for daily use |
+| [**<ins>06-slurm.md</ins>**](./05-slurm.md) | Submitting, monitoring, and managing jobs |
+| [**<ins>07-computing-env.md</ins>**](./07-computing-env.md) | Loading modules and setting up computing environments |
 | [**<ins>08-task.md</ins>**](./08-task.md) | Hands-on exercise |
 
 ## Additional Resources
@@ -39,3 +39,7 @@ Each topic in this tutorial is contained in its own Markdown file for easy navig
 * [**<ins>Our Globus Docs</ins>**](https://hyak.uw.edu/docs/storage/globus)
 * [**<ins>Globus' Documentation</ins>**](https://docs.globus.org/?_gl=1*da6xxk*_ga*ODMxMTMwMTg2LjE3NTg3MzQ0OTk.*_ga_7ZB89HGG0P*czE3NTk2MTAwNTAkbzckZzAkdDE3NTk2MTAwNTAkajYwJGwwJGgw)
 * [**<ins>Hyak Klone Open OnDemand Portal for GUI</ins>**](https://hyak.uw.edu/docs/ood/start)
+
+## Stay Tuned
+
+Check our 🗓️ [Research Computing Calendar](https://calendar.washington.edu/sea_uwit-rc) for upcoming training events.

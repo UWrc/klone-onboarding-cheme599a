@@ -15,7 +15,7 @@ By completing this tutorial, you’ll learn how to:
 - Use essential Linux commands for inspecting and manipulating files
 - Submit and monitor jobs with Slurm
 - Load and manage software modules
-- Use Conda computing environments
+- Use Conda compute environments
 
 ## Repository Structure
 
@@ -30,7 +30,7 @@ Each topic in this tutorial is contained in its own Markdown file for easy navig
 | [**<ins>04-file-transfer.md</ins>**](./04-file-transfer.md) | Transferring files with `scp` and Globus |
 | [**<ins>05-basic-commands.md</ins>**](./04-file-transfer.md) | Essential Linux commands for daily use |
 | [**<ins>06-slurm.md</ins>**](./05-slurm.md) | Submitting, monitoring, and managing jobs |
-| [**<ins>07-computing-env.md</ins>**](./07-computing-env.md) | Loading modules and setting up computing environments |
+| [**<ins>07-compute-env.md</ins>**](./07-compute-env.md) | Loading modules and setting up compute environments |
 | [**<ins>08-task.md</ins>**](./08-task.md) | Hands-on exercise |
 
 ## Additional Resources

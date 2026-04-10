@@ -3,8 +3,7 @@
 
 In this section, we will review more commands to get you comfortable doing basic things on Hyak. Some of the data and exercises for this tutorial were sampled from [<ins>**The Unix Shell by Software Carpentry**</ins>](https://swcarpentry.github.io/shell-novice/index.html), but have been tailored to fit most Hyak users. Sampled materials are under the Copyright of Software Carpentry and are made available under the Creative Commons Attribution license (CC BY 4.0).
 
-We'll use some commands you already know like `pwd`, `cd`, and `ls`, but we'll cover these commands and concepts for the first time: 
-- [Use relative paths with `../`](#use-relative-paths-with-)
+We'll use some commands you already know like `pwd`, `cd`, and `ls`, but we'll cover the following commands and concepts for the first time: 
 - [`mkdir` or "make directory" to make an empty directory](#mkdir-or-make-directory-to-make-an-empty-directory)
 - [Edit files with `nano`](#edit-files-with-nano)
 - [`cat` or "concatenate" a file to print its contents](#cat-or-concatenate-a-file-to-print-its-contents)
@@ -19,7 +18,7 @@ We'll use some commands you already know like `pwd`, `cd`, and `ls`, but we'll c
 - [View your command history `history`](#view-your-command-history-history)
 
 <!-- omit in toc -->
-## Setup: Preparing Your Tutorial Workspace
+## Setup: preparing your tutorial workspace
 
 You should have already completed these steps earlier in the tutorial, but before we continue, let’s make sure everyone is starting from the same place.
 
@@ -34,81 +33,51 @@ Navigate to your working directory before moving on:
 cd /gscratch/scrubbed/$USER/klone-onboarding-cheme599a
 ```
 
-If this you don't have you working directory yet, [return to the Filesystem Scrubbed section](./02-filesystem.md#scrubbed-storage--our-tutorial-workspace) to set it up. 
-
-## Use relative paths with `../`
-
-Another way to move around the directories on the filesystem is with relative paths. Use `../` to move backwards (toward the root) one directory at a time. 
-
-Print your working directory to understand where you are.
-
-```bash
-cd ../
-pwd
-```
-
-Use `cd` and `../` twice to go backward 2 directories
-
-```bash
-cd ../../
-pwd
-```
-
-You can list the contents of the directory "above" where we are now without changing directory.
-
-```bash
-ls ../
-```
+If this you don't have you working directory yet, [<ins>return to the Filesystem Scrubbed section</ins>](./02-filesystem.md#5-scrubbed-storage--our-tutorial-workspace) to set it up. 
 
 ## `mkdir` or "make directory" to make an empty directory 
 
-Let's go back to your working directory and practice making a directory.
-
-```bash
-cd /gscratch/scrubbed/$USER/klone-onboarding-cheme599a
-```
-
-Make a directory called "writing" and navigate into it
+Let's practice making a directory called "writing" in current directory and navigate into it
 
 ```bash
 mkdir writing
 cd writing
 ```
 
-Note that `mkdir` is not limited to creating single directories one at a time. The `-p` option for "path" allows `mkdir` to create a directory with nested subdirectories in a single operation:
+Note that `mkdir` is not limited to creating single directories one at a time. The `-p` option for "path" allows `mkdir` to create a directory with nested subdirectories in a single operation, and no error will be reported if a directory given as an operand already exists.
 
 ```bash
 # make a directory called project with subdirectories data and results
-# make these one directory "above" where we are now 
-mkdir -p ./project/data ./project/results
+# make these one directory "above" where we are now
+mkdir -p ../project/data ../project/results
 ```
 
 `-F` option with `ls` puts a `/` after directories to differentiate them from other objects.
 
 ```bash
-ls -F
+ls -F ../
 ```
 
 The `-R` option to the `ls` command will list all nested subdirectories within a directory. Let’s use `ls -FR` to recursively list the new directory hierarchy we just created in the project directory:
 
 ```bash
-ls -FR ./project
+ls -FR ../project
 ```
 
 > ⚠️ **WARNING:** Avoid complicated names for files and directories
 > 
-> * **Avoid spaces** - Spaces separate arguments on the command line, so they often cause unexpected behavior. Use `-` or `_` instead (for example, `north-pacific-gyre/` rather than `north pacific gyre/`).
-> * **Don’t start names with `-` (dash)** - Anything beginning with `-` is interpreted as a command option, not a filename.
-> * **Stick to safe characters** - Use letters, numbers, `.`, `-`, and `_`. Many other characters have special meanings in the shell and can cause commands to fail or behave in unexpected ways.
+> - **Avoid spaces** - Spaces separate arguments on the command line, so they often cause unexpected behavior. Use `-` or `_` instead (for example, `north-pacific-gyre/` rather than `north pacific gyre/`).
+> - **Don’t start names with `-` (dash)** - Anything beginning with `-` is interpreted as a command option, not a filename.
+> - **Stick to safe characters** - Use letters, numbers, `.`, `-`, and `_`. Many other characters have special meanings in the shell and can cause commands to fail or behave in unexpected ways.
 
 ## Edit files with `nano`
 
 To edit files on Klone we need to go back to basic text editors. You will not have access to a word processor, and formatting and syntax doesn't always translate from Microsoft Word or similar software to executable commands on Klone. Next, we will create a file called `draft.txt` and open it in the text editor `nano`.
 
-First change directory to writing:
+First make sure you're in `/gscratch/scrubbed/$USER/klone-onboarding-cheme599a/writing`:
 
 ```bash
-cd /gscratch/scrubbed/$USER/klone-onboarding-cheme599a/writing
+pwd
 ```
 
 Then create and open a file called draft.txt with the command:
@@ -121,7 +90,7 @@ nano draft.txt
 
 Let's type a few lines of text.
 
-![Screenshot of nano text editor showing draft.txt and the example text.](./img/draft_nano.png 'nano')
+![Screenshot of nano text editor showing draft.txt and the example text.](./img/draft_nano.png 'nano')\
 *Screenshot of `nano` text editor showing draft.txt and the example text.*
 
 Once we’re happy with our text, we can press `Ctrl`+`O` (press the `Ctrl` or `Control` key and, while holding it down, press the `O` key) to write our data to disk. We will be asked to provide a name for the file that will contain our text. Press Return to accept the suggested default of `draft.txt`.
@@ -139,8 +108,8 @@ cat draft.txt
 > 📝 **NOTE:** **Paths** and **Access**
 >
 > To access a file or directory (i.e., item) you must: 
-> * be inside of the directory where the item is and provide a relative path to the item from your current directory
-> * or provide an absolute path to the item
+> - be inside of the directory where the item is and provide a relative path to the item from your current directory
+> - or provide an absolute path to the item
 
 ## `cp` or "copy" files
 
@@ -171,7 +140,7 @@ mv animals.csv dataset.csv
 
 ## `rm` or "remove" a file
 
-> ⚠️ **WARNING:** `rm` permanently deletes a file. This action is irreversible.
+> ⚠️ **WARNING:** ***`rm` permanently deletes a file. This action is irreversible.***
 
 ```bash
 rm dataset.csv
@@ -180,7 +149,7 @@ rm dataset.csv
 Remove a directory with recursive `rm`.
 
 ```bash
-cd klone-onboarding-cheme599a/writing/
+cd klone-onboarding-cheme599a/
 ls
 # Use extreme caution with this command
 rm -r project
@@ -208,7 +177,7 @@ ls /sw/hyak101/basics/locator_NN*
 ## "Redirect" output to a file with `>`
 
 ```bash
-# list all files in current directory and redirect result to a file
+# list all files in current directory and redirect result to a file ls.out
 ls -a > ls.out
 cat ls.out
 ```
@@ -244,6 +213,8 @@ Alternatively, files ending with "slurm" can be printed by using one line of cod
 ls -la | grep "slurm"
 ```
 
+The standard output of `ls -la` is sent directly as the standard input to `grep`.
+
 ## View your command history `history`
 
 ```bash
@@ -256,4 +227,4 @@ Use `history`, `|`, and `grep` together to find all times the `cat` command was 
 history |grep cat
 ```
 
-> 💡 **TIPS:** Add `--help` flag or use `man command` to display the help message / system documentation of a command.
+> 💡 **TIPS:** Use the `--help` flag or the `man` command to view the help message or system documentation of a command.

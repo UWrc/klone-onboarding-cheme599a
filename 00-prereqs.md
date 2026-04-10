@@ -33,3 +33,9 @@ Alternative SSH clients commonly used on Windows include:
 - [<ins>**Git Bash**</ins>](https://carpentries.github.io/workshop-template/install_instructions/#shell) (includes a Bash shell and SSH)
 
 You only need one SSH client installed to complete this tutorial.
+
+## Helpful Resources
+
+- [**<ins>Hyak Klone Login Video</ins>**](https://youtu.be/gbse1xqezqk)
+- [**<ins>Detailed Login Instructions</ins>**](https://github.com/UWrc/linux-fundamentals/blob/main/01-logging-in.md)
+- [**<ins>SSH Client Overview</ins>**](https://github.com/UWrc/linux-fundamentals/blob/main/00-prereqs.md)

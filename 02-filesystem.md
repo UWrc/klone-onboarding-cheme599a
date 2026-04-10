@@ -45,13 +45,14 @@ As shown above, the Klone filesystem is organized under the root directory `/`. 
 > 
 > Symbolic links do not duplicate data. Instead, they act as pointers to the original directory. You can safely use either path when navigating the filesystem or writing job scripts.
 > ```bash
+> $ cd /mmfs1
 > $ ls -l
 > lrwxrwxrwx    1 root root     15 Mar 10 05:48 gscratch -> /mmfs1/gscratch
 > ```
 > 
 > ***You may see multiple paths that appear different but resolve to the same location. This is expected behavior on Klone and is used to improve usability.***
 
-## Basic Commands
+## Navigating the Filesystem
 
 Linux provides a small set of commands that you'll use constantly to navigate the file system. In this section, we will practice using these common commands to move around Hyak Klone.
 
@@ -95,8 +96,9 @@ ch ~
 ```
 
 > 💡 **TIPS: Useful `cd` Shortcuts**
-> - `cd ~` or `cd` Go to your Home directory
-> - `cd -` or `cd ..` Go back to your previous directory
+> - `cd ~` or `cd` Goes to your Home directory
+> - `cd -` Returns you to your previous working directory
+> - `cd ..` Moves you up one directory level (to the parent directory). `../` represents a relative path pointing one level up in the directory tree. You can chain it to move up multiple levels. For example, `cd ../../` goes backward 2 directories.
 
 ### 3. `ls`: Listing Directory Contents
 
@@ -137,7 +139,7 @@ You do not need to be inside a directory to list its contents. You can provide a
 
 ### 4. Node vs. Filesystem Location
 
-Your command prompt shows two kinds of location.
+Your command prompt shows two kinds of location: node and filesystem locations.
 
 ```bash
 hostname
@@ -168,7 +170,7 @@ While we're at it, le'ts clone the git repository for this tutorial, we'll use s
 git clone https://github.com/UWrc/klone-onboarding-cheme599a.git
 ```
 
-You can check the contens of your working directory and the contents of the git repository at any time with:
+You can check the contents of your working directory and the contents of the git repository at any time with:
 
 ```bash
 ls

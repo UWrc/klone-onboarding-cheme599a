@@ -16,16 +16,18 @@ There are two main ways to run work on Klone:
 | **Batch Job**       | `sbatch` | Long or unattended jobs      | Runs automatically when resources are available |
 
 
-Klone jobs are submitted under a combination of **account** and **partition**, which defines limits like CPU/GPU count and memory.
+Klone jobs are submitted under a combination of **account** and **partition**, which defines resource limits like CPU/GPU count and memory based on hardware holdings of the account.
+
+> 💡 **TIPS**: Use `hyakalloc` to find available compute resources.
 
 ## Interactive Jobs with `salloc`
 
 Interactive jobs give you a live shell on a compute node — great for testing or exploring.
 
-Run the following to start an interactive session using 1 GPU:
+Run the following to start an interactive session using 1 CPU:
 
 ```bash
-salloc --partition=ckpt-all --time=01:00:00
+salloc --partition=ckpt-all --cpus-per-task=1 --mem=10G --time=1:00:00
 ```
 
 When the job starts, you’ll see the following:
@@ -38,13 +40,26 @@ salloc: Nodes n3319 are ready for job
 
 > 📝 **NOTE:** The hostname changed from `klone-login01` to a compute nodelist (e.g., `n3319`). You are now on a compute node. 
 
-> 💡 **TIPS:** If you have trouble with a job, saving and sharing the jobID (e.g. above, 34515117) allows us to investigate what was going on when your job failed. 
+> 💡 **TIPS:** If you have trouble with a job, saving the jobID (e.g. above, 34515117) allows us to investigate what was going on when your job failed.
+
+Now you can run code and scripts interactively on a compute node.
 
 To end the session, type:
 
 ```bash
 exit
 ```
+
+> 💡 **TIPS**: To request an interactive session on a GPU:
+>
+> ```bash
+> salloc --partition=ckpt-all --gpus-per-node=a40:1 --mem=10G --time=1:00:00 
+> ```
+> Confirming the GPU is Active:
+>
+> ```bash
+> nvidia-smi
+> ```
 
 ## Batch Jobs with `sbatch`
 
@@ -56,15 +71,20 @@ cat
 job.slurm
 ```bash
 #!/bin/bash
+
 #SBATCH --job-name=myjob
 #SBATCH --partition=ckpt-all
-#SBATCH --cpus-per-task=1
-#SBATCH --mem=10G
-#SBATCH --time=01:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --mem=1G
+#SBATCH --time=00:10:00
 #SBATCH --output=slurm-%j.out
+#SBATCH --open-mode=append
 
 hostname
 ```
+
+For more details on the `#SBATCH` directives, refer to [<ins>sbatch manual</ins>](https://slurm.schedmd.com/sbatch.html).
 
 You would submit the job with:
 
@@ -73,6 +93,13 @@ sbatch job.slurm
 ```
 
 Slurm will return a job ID and queue it for execution.
+
+To cancel a pending or running job, run:
+
+```bash
+# replace <job_id> with the real jobID returned by Slurm.
+scancel <job_id>
+```
 
 ## Monitoring Jobs
 
@@ -87,23 +114,19 @@ This command lists all your active or queued jobs. You’ll see columns such as:
 | Column | Meaning |
 | --- | --- |
 | **JOBID** | A unique number assigned to your job. Use this to reference it in other commands. |
-| **PARTITION** | The resource pool or QOS (e.g., `normal`, `interactive`). |
-| **NAME** | The job name you set in your script (`--job-name`). |
-| **ST** | The job’s status — common values include: <br> `PD` (Pending), `R` (Running), `CG` (Completing), `CD` (Completed). |
-| **TIME** | How long the job has been running. |
-| **NODELIST(REASON)** | The node(s) your job is on, or if pending, the reason it’s waiting (like “Resources” or “Priority”). |
+| **PARTITION** | The resource pool or QOS (e.g., `cpu-g2`, `gpu-rtx6k`, `ckpt-all`) |
+| **NAME** | The job name specified with `--job-name` |
+| **ST** | Job status: <br> `PD` (Pending), `R` (Running), `CG` (Completing), `CD` (Completed) |
+| **TIME** | Runtime duration |
+| **NODELIST(REASON)** | Node(s) assigned to the job or reason for pending (e.g., “Resources” or “Priority”) |
 
-Watch your queue update every 10 seconds:
+For more details or to customize the output format of squeue, refer to [<ins>squeue manual</ins>](https://slurm.schedmd.com/squeue.html).
 
-```bash
-watch -n 10 squeue -u $USER
-```
-
-Use `sinfo -r` to view cluster status and available nodes.
+Use `sinfo -r` to check cluster-wide node availability.
 
 Once it’s finished, view the output:
 
 ```bash
-cat slurm_<jobID>.out
 # replace <jobID> above with the jobID
+cat slurm_<jobID>.out
 ```

@@ -1,10 +1,10 @@
-# Computing Environment
+# Compute Environment
 
 Hyak Klone provides a flexible software environment for research computing. You can run software through modules (via Lmod) or containers (via Apptainer). 
 
 ## Modules
 
-Hyak uses the [Lmod](https://lmod.readthedocs.io/en/latest/) environment module system to manage software.
+Hyak uses the [<ins>Lmod</ins>](https://lmod.readthedocs.io/en/latest/) environment module system to manage software.
 
 Each loaded module dynamically modifies your shell environment (e.g. `PATH`, `LD_LIBRARY_PATH`) so that the corresponding executables and libraries become available.
 
@@ -38,7 +38,7 @@ Lmod is a Lua-based implementation of the environment modules system. Through mo
 
 Lmod supports hierarchical module structures through `MODULEPATH`, which help prevent incompatible software combinations.
 
-> 📝 **NOTE:** **On Klone, module commands are disabled on login nodes.** Request a compute node before searching or loading any modules.
+> 📝 **NOTE:** ***On Klone, module commands are disabled on login nodes.*** Request a compute node before searching or loading any modules.
 
 ### Core Module Commands
 
@@ -50,25 +50,13 @@ The module command sets the appropriate environment variable independent of your
 | `module avail` | List available modules in the current environment |
 | `module spider [module]`| Search all installed modules (deep search across all module hierarchies) |
 | `module load [modules]` | Load modules |
-| `module swap [module1] [module2]` | Replace `module1` with `module2` |
 | `module unload [modules]` | Unload specific modules |
 | `module purge` | Unload ***all*** modules from the current environment |
 | `module show [module]` | Show functions performed by loading module |
 | `module help [module]` | Show module-specific help message |
 | `module use [-a] [path]` | Prepend or append path to `MODULEPATH` |
 
-Lmod provides a convenient shortcut command [`ml`](https://lmod.readthedocs.io/en/latest/010_user.html#ml-a-convenient-tool) for the `module` command.
-
-> 💡 **TIP:** `ml` can be used instead of module, module load, or module list depending on the situation.
-
-| Example | Equivalent|
-|:-----|:-----|
-| `ml` | `module list` |
-| `ml [module]` | `module load [module]` |
-| `ml -[module]` | `module unload [module]` |
-| `ml avail` | `module avail` |
-
-Any module sub-commands (e.g., avail, spider, show, etc.) can be written as `ml subcommand [args]`.
+> 💡 **TIP:** Lmod provides a convenient shortcut command [<ins>`ml`</inse>](https://lmod.readthedocs.io/en/latest/010_user.html#ml-a-convenient-tool) for the `module` command. It can be used instead of module, module load, or module list depending on the situation.
 
 ### Find Modules
 
@@ -77,13 +65,13 @@ Any module sub-commands (e.g., avail, spider, show, etc.) can be written as `ml 
 List all modules visible in your current environment after starting an interactive session:
 
 ```bash
-salloc -A uwit -p ckpt-all -N 1 --time=2:00:00
+salloc -p ckpt-all -N 1 --mem=1G --time=1:00:00
 module avail
 ```
 
-> 💡 **TIP:** **Klone** provides a shared directory under `/sw/contrib/mylab-src` where each group can install software intended for shared use across Klone users. See the [Hyak Documentation](https://hyak.uw.edu/docs/tools/modules#how-do-i-create-shared-lmod-modules-on-klone) for instructions on creating and managing user-contributed Lmod modules.
+> 💡 **TIP:** **Klone** provides a shared directory under `/sw/contrib/mylab-src` where each group can install software intended for shared use across Klone users. See the [<ins>Hyak Documentation</ins>](https://hyak.uw.edu/docs/tools/modules#how-do-i-create-shared-lmod-modules-on-klone) for instructions on creating and managing user-contributed Lmod modules.
 
-To narrow results, for instance, if you want to see all `gcc` modules:
+To narrow down results, for instance, if you want to see all `gcc` modules:
 
 ```bash
 module avail gcc
@@ -107,7 +95,7 @@ module spider cuda/12.9.1
 
 The above output also indicates a modulefile's complete name includes its name and version. An installed application can have several versions. If dependencies exist, `module spider` will also show them.
 
-> 📝 **NOTE:** `module spider` is the most reliable way to search installed software and learn what prerequisites must be loaded first. **Always use `module spider` instead of `module avail` to find out how to `module load`.**
+> 📝 **NOTE:** `module spider` is the most reliable way to search installed software and learn what prerequisites must be loaded first. ***Always use `module spider` instead of `module avail` to find out how to `module load`.***
 
 ### Load Modules on Klone
 
@@ -123,24 +111,24 @@ module load cuda/12.9.1
 
 Conda allows you to create isolated environments that include specific versions of Python, libraries, and tools. This is essential in HPC environments, where reproducibility and dependency control are critical.
 
-If you’re new to Conda, you may find this helpful: [Conda Cheatsheet](https://docs.conda.io/projects/conda/en/latest/user-guide/cheatsheet.html)
+If you’re new to Conda, you may find this helpful: [<ins>Conda Cheatsheet</ins>](https://docs.conda.io/projects/conda/en/latest/user-guide/cheatsheet.html)
 
 ### Load Conda Module
 
 Hyak provides a minimal Miniforge (Conda) installation that you can utilize to build custom Conda environment. You must load it before using `conda`:
 
 ```bash
-salloc -A uwit -p ckpt-all -N 1 --time=2:00:00
+salloc uwit -p ckpt-all -N 1 --mem=10G --time=1:00:00
 module load conda
 ```
 
 The `conda` command becomes available now.
 
-> 📝 **NOTE:** For Klone users, be sure to run the `module load` command on a compute node. After loading the system Conda module, you do not need to run `conda init` or modify your shell startup file (`$HOME/.bashrc`). The module handles environment setup for you.
+> 📝 **NOTE:** After loading the system Conda module, you do not need to run `conda init` or modify your shell startup file (`$HOME/.bashrc`). The module handles environment setup for you.
 
 ### Create and Manage Conda Environments
 
-**Choose Where to Store Environments and Packages (Important)**
+#### Choose Where to Store Environments and Packages (Important)
 
 By default, the system Conda stores environments in your home directory (`$HOME/.conda/envs`). However, your home directory on Hyak has a **10 GB** quota, which is often insufficient. 
 
@@ -199,7 +187,7 @@ Conda has several default channels that will be used first for package installat
 
 ### Install Packages with `pip`
 
-You can use `pip` inside a Conda environment to install Python packages. Anaconda provides some [best practices](https://www.anaconda.com/blog/using-pip-in-a-conda-environment) for using `pip` with Conda. Our suggested use of pip is inside a conda environment.
+You can use `pip` inside a Conda environment to install Python packages. Anaconda provides some [<ins>best practices</ins>](https://www.anaconda.com/blog/using-pip-in-a-conda-environment) for using `pip` with Conda. Our suggested use of pip is inside a conda environment.
 
 Example:
 ```bash
@@ -210,19 +198,19 @@ pip install seaborn
 
 This ensures that `pip` installs packages into the active Conda environment — **not globally** — making it easy to clean up completely when you are done.
 
-See the [pip documentation](https://pip.pypa.io/en/stable/cli/pip_install/) for more information.
+See the [<ins>pip documentation</ins>](https://pip.pypa.io/en/stable/cli/pip_install/) for more information.
 
 > 💡 **Best practices on Hayk:**
 > - Use separate environments for different projects
 > - Use `pip install` inside a Conda environment
 > - Install CUDA-aware packages on a **GPU node**, with compatible CUDA module/version loaded before installation.
 
-## Containers (Optional)
+## Containers
 
 Hyak supports Apptainer containers for portable, isolated software stacks. For complex GPU workflows, portable software stacks, or highly reproducible research, consider using Apptainer containers instead of Conda.
 
 Useful resources:
-- [NVIDIA's NGC Catalog](https://catalog.ngc.nvidia.com/?filters=&orderBy=weightPopularDESC&query=&page=&pageSize=) provides prebuilt containers with CUDA and NVIDIA drivers configured
-- [Hyak Containers Documentation](https://hyak.uw.edu/docs/tools/containers)
-- [Klone Containers Tutorial](https://hyak.uw.edu/docs/hyak101/containers/syllabus)
-- [Tillicum Containers Tutorial](https://github.com/UWrc/tillicum-containers/)
+- [<ins>NVIDIA's NGC Catalog</ins>](https://catalog.ngc.nvidia.com/?filters=&orderBy=weightPopularDESC&query=&page=&pageSize=) provides prebuilt containers with CUDA and NVIDIA drivers configured
+- [<ins>Hyak Containers Documentation</ins>](https://hyak.uw.edu/docs/tools/containers)
+- [<ins>Klone Containers Tutorial</ins>](https://hyak.uw.edu/docs/hyak101/containers/syllabus)
+- [<ins>Tillicum Containers Tutorial</ins>](https://github.com/UWrc/tillicum-containers/)

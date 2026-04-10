@@ -9,7 +9,7 @@ Hyak provides command-line tools to help you understand:
 
 Two commonly used tools are `hyakalloc` and `hyakstorage`.
 
-## Checking Compute Resources with `hyakalloc` (Klone only)
+## Checking Compute Resources with `hyakalloc` (Klone Only)
 
 The `hyakalloc` command shows which **Hyak accounts and partitions** you are a member of, along with the **current utilization** of those resources. Resource limits are directly tied to what was contributed by each group.
 

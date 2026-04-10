@@ -52,7 +52,7 @@ interactive session on (or submitting batch jobs to) compute nodes.
 > 
 > If your login attempt fails even though your password and 2FA are correct, your Hyak access may have expired or been removed.
 > - Contact **UWIT Research Computing** or your **Hyak account administrator** for your research group to confirm your access.
-> - Students using shared or instructional allocations (such as STF) may need to [**reapply for access**](https://depts.washington.edu/uwrcc/hyak_access/).
+> - Students using shared or instructional allocations (such as STF) may need to [**<ins>reapply for access</ins>**](https://depts.washington.edu/uwrcc/hyak_access/).
 >   - In many cases, STF access does not automatically renew between quarters.
 >
 > **2. Incorrect Username or Password**
@@ -84,7 +84,7 @@ interactive session on (or submitting batch jobs to) compute nodes.
 > 
 > If your login issues persist after checking the items above, please contact UW support:
 > 
-> **Email:** help@uw.edu  
+> **Email:** <ins>help@uw.edu</ins> \
 > **Subject line:** "Hyak login issue" \
 > Including “Hyak” in the subject line helps route your request to the appropriate support team.
 

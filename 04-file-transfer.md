@@ -9,7 +9,7 @@ Efficient and reliable data transfer is a key part of working on Hyak Klone. The
 
 ## Transfer Data with `scp`
 
-`scp` (Secure Copy) works similarly to `ssh`.you'll use your UW NetID credentials to securely copy data between your local machine and Klone.
+`scp` (Secure Copy) works similarly to `ssh`. You'll use your UW NetID credentials to securely copy data between your local machine and Klone.
 
 > 📝 **NOTE: These commands must be run from your local terminal, not from inside Klone.**
 

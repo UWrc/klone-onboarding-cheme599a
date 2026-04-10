@@ -1,10 +1,10 @@
 # Prerequisites
 
 Before starting this tutorial, you should have the following in place:
-* A UW NetID
-* An active Hyak account
-* Two-factor authentication (2FA) enabled
-* Access to an SSH client on your local computer
+- A UW NetID
+- An active Hyak account
+- Two-factor authentication (2FA) enabled
+- Access to an SSH client on your local computer
 
 ## Two-Factor Authentication
 
@@ -24,12 +24,12 @@ Open the **Terminal** application and use the `ssh` command directly.
 
 **Windows Users:**
 Recent versions of Windows include native SSH support via:
-* **Command Prompt**
-* **HIGHLY RECOMMENDED — Windows PowerShell** 
-* **Windows Subsystem for Linux (WSL)** if installed
+- **Command Prompt**
+- **HIGHLY RECOMMENDED — Windows PowerShell** 
+- **Windows Subsystem for Linux (WSL)** if installed
 
 Alternative SSH clients commonly used on Windows include:
-* [<ins>**PuTTY**</ins>](https://www.putty.org/)
-* [<ins>**Git Bash**</ins>](https://carpentries.github.io/workshop-template/install_instructions/#shell) (includes a Bash shell and SSH)
+- [<ins>**PuTTY**</ins>](https://www.putty.org/)
+- [<ins>**Git Bash**</ins>](https://carpentries.github.io/workshop-template/install_instructions/#shell) (includes a Bash shell and SSH)
 
 You only need one SSH client installed to complete this tutorial.

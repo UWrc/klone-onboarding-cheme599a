@@ -9,13 +9,12 @@ Hyak is an ecosystem of high-performance compute (HPC) clusters and supporting i
 This tutorial covers everything you need to start using Hyak effectively — from logging in to running Slurm jobs on compute nodes.
 
 By completing this tutorial, you’ll learn how to:
-
-* Log in and access Hyak Klone resources
-* Navigate the filesystem and manage data
-* Transfer data with scp and Globus
-* Submit and monitor jobs with Slurm
-* Load and manage software modules
-* Use Conda computing environments
+- Log in and access Hyak Klone resources
+- Navigate the filesystem and manage data
+- Transfer data with scp and Globus
+- Submit and monitor jobs with Slurm
+- Load and manage software modules
+- Use Conda computing environments
 
 ## Repository Structure
 

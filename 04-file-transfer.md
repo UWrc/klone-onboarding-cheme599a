@@ -24,7 +24,7 @@ Replace `UWNetID` with your UW NetID in both the login and the path.
 ### Download files from Klone to your local computer
 
 ```bash
-scp UWNetID@klone.hyak.uw.edu:/gscratch/scrubbed/UWNetID/klone-onboarding-cheme599a/slide_klone_onboarding.pdf .
+scp UWNetID@klone.hyak.uw.edu:/gscratch/scrubbed/UWNetID/klone-onboarding-cheme599a/slides_klone_onboarding.pdf .
 ```
 
 The `.` at the end of the command tells `scp` to place the files in your current working directory or "here."
